@@ -10,11 +10,11 @@ Gem::Specification.new do |s|
   s.description = %q{Simple Ruby client for the Phono API}
   s.email = %q{aurelien.malisart@gmail.com}
   s.executables = []
-  
+
   s.extra_rdoc_files = [
     "README.md"
   ]
-  
+
   s.files = `git ls-files`.split("\n")
   s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.homepage = %q{http://github.com/aurels/phono}
@@ -28,5 +28,6 @@ Gem::Specification.new do |s|
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
     s.add_dependency(%q<httparty>)
+    s.add_dependency(%q<active_support>)
   end
 end

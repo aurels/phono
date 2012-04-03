@@ -1,4 +1,5 @@
 require 'httparty'
+require 'active_support'
 
 module Phono
 	class Client
@@ -25,7 +26,7 @@ module Phono
 		def create(ref, attributes = {})
 			self.class.post("/#{ref}.json", {
 				:query => base_params.merge!({
-					ref.to_sym => attributes
+					ref.singularize.to_sym => attributes
 				})
 			})
 		end
@@ -33,7 +34,7 @@ module Phono
 		def update(ref, id, params = {})
 			self.class.put("/#{ref}/#{id}.json", {
 				:query => base_params.merge!({
-					ref.to_sym => attributes
+					ref.singularize.to_sym => attributes
 				})
 			})
 		end

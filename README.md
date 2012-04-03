@@ -5,7 +5,7 @@ Simple Ruby client for the Phono API.
 # Usage
 
       phono = Phono::Client.new('424242424242424242424242')
-      
+
 ## Getting all instances of an entity
 
       phono.all('products')
