@@ -51,3 +51,21 @@ Results are paginated.  You can play with `page` and `per_page` parameters.
 ## Destroying an instance of an entity
 
       phono.destroy('products', '2323...')
+
+## Displaying pictures
+
+Get the original's URL :
+
+      instance['picture']
+
+Get a resized version :
+
+      "#{instance['picture']}?size=300x200"
+
+Get a resized and cropped version :
+
+      "#{instance['picture']}?size=300x200&crop=true"
+
+You can also force the resize (with deformation) :
+
+      "#{instance['picture']}?size=300x200&force=true"
