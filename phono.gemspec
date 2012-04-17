@@ -28,6 +28,6 @@ Gem::Specification.new do |s|
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
     s.add_dependency(%q<httparty>)
-    s.add_dependency(%q<active_support>)
+    s.add_dependency(%q<active_support>, '>= 2.0.0')
   end
 end
