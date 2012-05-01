@@ -69,3 +69,9 @@ Get a resized and cropped version :
 You can also force the resize (with deformation) :
 
       "#{instance['picture']}?size=300x200&force=true"
+
+## Cache control
+
+All JSON responses are cached (5 minutes by default).  You can override this timeout by passing the value you want as a 2nd parameter to the client's constructor :
+
+      Phono::Client.new('424242424242424242424242', 3600) # responses will be cached for 1 hour

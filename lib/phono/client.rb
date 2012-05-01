@@ -1,14 +1,18 @@
 require 'httparty'
+require 'httparty-icebox'
 require 'active_support'
 
 module Phono
 	class Client
 		include HTTParty
+		include HTTParty::Icebox
 
 		base_uri 'http://phono.phonoid.com/api'
 
-		def initialize(api_key)
+		def initialize(api_key, cache_timeout = 60)
 			@api_key  = api_key
+
+			self.class.cache :timeout => cache_timeout
 		end
 
 		def all(ref, params = {})
@@ -48,9 +52,7 @@ module Phono
 		protected
 
 		def base_params
-			{
-				:api_key => @api_key
-			}
+			{ :api_key => @api_key }
 		end
 	end
 end

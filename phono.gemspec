@@ -29,5 +29,6 @@ Gem::Specification.new do |s|
     s.specification_version = 3
     s.add_dependency(%q<httparty>)
     s.add_dependency(%q<activesupport>, '>= 2.0.0')
+    s.add_dependency(%q<httparty-icebox>)
   end
 end
