@@ -12,17 +12,21 @@ module Phono
     def initialize(api_key, cache_timeout = 60)
       @api_key  = api_key
 
-      self.class.cache :timeout => cache_timeout
+      self.class.cache(:timeout => cache_timeout)
     end
 
     def all(ref, params = {})
-      self.class.get("/#{ref}.json", {
+      method = params.delete(:cache).nil? ? :get : :get_without_caching
+
+      self.class.send(method, "/#{ref}.json", {
         :query => base_params.merge!(params)
       })
     end
 
     def find(ref, id)
-      self.class.get("/#{ref}/#{id}.json", {
+      method = params.delete(:cache).nil? ? :get : :get_without_caching
+
+      self.class.send(method, "/#{ref}/#{id}.json", {
         :query => base_params
       })
     end
@@ -52,7 +56,9 @@ module Phono
     protected
 
     def base_params
-      { :api_key => @api_key }
+      {
+        :api_key => @api_key
+      }
     end
   end
 end
