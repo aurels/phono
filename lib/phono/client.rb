@@ -1,6 +1,7 @@
 require 'httparty'
 require 'httparty-icebox'
 require 'active_support'
+require 'active_support/core_ext/hash/keys'
 
 module Phono
   class Client
@@ -9,22 +10,24 @@ module Phono
 
     base_uri 'http://phono.phonoid.com/api'
 
-    def initialize(api_key, cache_timeout = 60)
+    def initialize(api_key, params = {})
       @api_key  = api_key
 
-      self.class.cache(:timeout => cache_timeout)
+      self.class.cache(:timeout => params[:cache_timeout] || 60)
     end
 
     def all(ref, params = {})
-      method = params.delete(:cache).nil? ? :get : :get_without_caching
+      params.stringify_keys!
+      method = params.delete('cache').nil? ? :get : :get_without_caching
 
       self.class.send(method, "/#{ref}.json", {
         :query => base_params.merge!(params)
       })
     end
 
-    def find(ref, id)
-      method = params.delete(:cache).nil? ? :get : :get_without_caching
+    def find(ref, id, params = {})
+      params.stringify_keys!
+      method = params.delete('cache').nil? ? :get : :get_without_caching
 
       self.class.send(method, "/#{ref}/#{id}.json", {
         :query => base_params
